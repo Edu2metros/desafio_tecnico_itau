@@ -3,8 +3,11 @@ package infrastructure.adapter.repository;
 import domain.exception.PetLocationNotFoundException;
 import domain.model.PetLocation;
 import domain.port.out.PetLocationOut;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class PetLocationRepository implements PetLocationOut {
@@ -22,12 +25,6 @@ public class PetLocationRepository implements PetLocationOut {
     }
 
     @Override
-    public PetLocation findById(Long id) {
-        return jpaPetLocationRepository.findById(id)
-                .orElseThrow(() -> new PetLocationNotFoundException("Pet location not found for ID: " + id));
-    }
-
-    @Override
     public PetLocation findBySensorId(String sensorId) {
         PetLocation petLocation = jpaPetLocationRepository.findBySensorId(sensorId);
         if (petLocation == null) {
@@ -40,4 +37,16 @@ public class PetLocationRepository implements PetLocationOut {
     public boolean existsBySensorId(String sensorId) {
         return jpaPetLocationRepository.existsBySensorId(sensorId);
     }
+
+    @Override
+    @Transactional
+    public void deleteBySensorId(String sensorId) {
+        jpaPetLocationRepository.deleteBySensorId(sensorId);
+    }
+
+    @Override
+    public List<PetLocation> findAll() {
+        return jpaPetLocationRepository.findAll();
+    }
+
 }

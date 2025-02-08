@@ -5,6 +5,7 @@ import domain.model.PetLocation;
 
 public interface PetLocationIn {
     PetLocationDTO saveLocation(PetLocation petLocation);
-    PetLocationDTO getLastLocationById(Long id);
     PetLocationDTO updateLocationBySensorId(String sensorId, PetLocation petLocation);
+    PetLocationDTO updateLocationByPatch(String sensorId, PetLocation petLocation);
+    void deleteLocationBySensorId(String sensorId);
 }

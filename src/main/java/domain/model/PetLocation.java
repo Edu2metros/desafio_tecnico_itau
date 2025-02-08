@@ -2,29 +2,28 @@ package domain.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
 
 @Entity
 public class PetLocation {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @Column(nullable = false, unique = true)
     @JsonProperty("sensorId")
     private String sensorId;
 
     @JsonProperty("latitude")
-    private double latitude;
+    @NotNull(message = "Latitude is required")
+    private Double latitude;
 
     @JsonProperty("longitude")
-    private double longitude;
+    @NotNull(message = "Longitude is required")
+    private Double longitude;
 
     @JsonProperty("timestamp")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssXXX")
+    @NotNull(message = "Timestamp is required")
     private OffsetDateTime timestamp;
 
     @JsonProperty("country")
@@ -45,24 +44,20 @@ public class PetLocation {
     // Getters and Setters
 
 
-    public String getSensorId() {
-        return sensorId;
-    }
-
-
-    public double getLatitude() {
+    public String getSensorId() { return sensorId; }
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
@@ -113,4 +108,6 @@ public class PetLocation {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public void setSensorId(String sensorId) { this.sensorId = sensorId; }
 }
