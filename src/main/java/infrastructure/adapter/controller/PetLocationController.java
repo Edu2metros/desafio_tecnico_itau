@@ -26,11 +26,7 @@ public class PetLocationController {
 
     @GetMapping("/{sensorId}")
     public ResponseEntity<?> getLastLocationBySensorId(@PathVariable String sensorId) {
-        try {
-            return new ResponseEntity<>(petLocationService.getLastLocationBySensorId(sensorId), HttpStatus.OK);
-        } catch (PetLocationNotFoundException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-        }
+        return ResponseEntity.ok(petLocationService.getLastLocationBySensorId(sensorId));
     }
 
     @PostMapping

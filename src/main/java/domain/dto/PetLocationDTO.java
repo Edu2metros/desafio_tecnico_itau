@@ -9,7 +9,7 @@ public class PetLocationDTO {
     private String neighborhood;
     private String address;
 
-    public PetLocationDTO(PetLocation petLocation){
+    public PetLocationDTO(PetLocation petLocation) {
         this.country = petLocation.getCountry();
         this.state = petLocation.getState();
         this.city = petLocation.getCity();
@@ -17,34 +17,43 @@ public class PetLocationDTO {
         this.address = petLocation.getAddress();
     }
 
-    public String getCountry(){
+    public String getCountry() {
         return country;
     }
-    public void setCountry(String country){
+
+    public void setCountry(String country) {
         this.country = country;
     }
-    public String getState(){
+
+    public String getState() {
         return state;
     }
-    public void setState(String state){
+
+    public void setState(String state) {
         this.state = state;
     }
-    public String getCity(){
+
+    public String getCity() {
         return city;
     }
-    public void setCity(String city){
+
+    public void setCity(String city) {
         this.city = city;
     }
-    public String getNeighborhood(){
+
+    public String getNeighborhood() {
         return neighborhood;
     }
-    public void setNeighborhood(String neighborhood){
+
+    public void setNeighborhood(String neighborhood) {
         this.neighborhood = neighborhood;
     }
-    public String getAddress(){
+
+    public String getAddress() {
         return address;
     }
-    public void setAddress(String address){
+
+    public void setAddress(String address) {
         this.address = address;
     }
 }
