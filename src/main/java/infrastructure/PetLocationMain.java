@@ -15,5 +15,3 @@ public class PetLocationMain {
         SpringApplication.run(PetLocationMain.class, args);
     }
 }
-
-// test
