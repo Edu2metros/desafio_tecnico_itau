@@ -1,8 +1,7 @@
 package tests.unit.external;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import domain.model.PetLocation;
+import domain.service.validation.PetLocationValidator;
 import infrastructure.adapter.external.PetLocationPositionStack;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,9 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -22,6 +18,9 @@ class PetLocationPositionStackTest {
 
     @Mock
     private RestTemplate restTemplate;
+
+    @Mock
+    private PetLocationValidator validator;
 
     @InjectMocks
     private PetLocationPositionStack petLocationPositionStack;

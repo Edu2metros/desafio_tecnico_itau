@@ -2,18 +2,26 @@ package tests.unit.validation;
 
 import domain.model.PetLocation;
 import domain.service.validation.PetLocationValidator;
+import infrastructure.adapter.repository.PetLocationRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class PetLocationValidatorTest {
+
+    @Mock
+    private PetLocationRepository petLocationRepository;
 
     private PetLocationValidator validator;
 
     @BeforeEach
     void setUp() {
-        validator = new PetLocationValidator();
+        MockitoAnnotations.openMocks(this);
+        validator = new PetLocationValidator(petLocationRepository);
     }
 
     @Test
@@ -68,4 +76,23 @@ class PetLocationValidatorTest {
 
         assertThrows(IllegalArgumentException.class, () -> validator.validatePatch("123", petLocation), "Sensor ID cannot be updated");
     }
+
+    @Test
+    void testInvalidLatitude() {
+        PetLocation petLocation = new PetLocation();
+        petLocation.setLatitude(-91.0);
+        petLocation.setLongitude(50.0);
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> validator.validateCoordinates(petLocation));
+        assertEquals("Latitude must be between -90 and 90 degrees", exception.getMessage());
+    }
+
+    @Test
+    void testInvalidLongitude() {
+        PetLocation petLocation = new PetLocation();
+        petLocation.setLatitude(45.0);
+        petLocation.setLongitude(181.0);
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> validator.validateCoordinates(petLocation));
+        assertEquals("Longitude must be between -180 and 180 degrees", exception.getMessage());
+    }
+
 }

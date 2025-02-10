@@ -15,7 +15,7 @@ import java.io.IOException;
 public class PetLocationPositionStack {
 
     private static final String API_URL = "http://api.positionstack.com/v1/reverse";
-    private static final String ACCESS_KEY = "98b28301c5acc9e3f53804b141c9f76d";
+    private static final String ACCESS_KEY = "24b8151dc2e598d0841ec0fea17b2297";
 
     private final PetLocationValidator validator;
 

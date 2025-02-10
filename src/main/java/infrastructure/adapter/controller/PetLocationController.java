@@ -1,5 +1,6 @@
 package infrastructure.adapter.controller;
 
+import domain.dto.PetLocationDTO;
 import domain.exception.PetLocationNotFoundException;
 import domain.model.PetLocation;
 import domain.service.PetLocationService;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/location")
@@ -38,6 +41,12 @@ public class PetLocationController {
         } catch (RuntimeException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         }
+    }
+
+    @PostMapping("/batch")
+    public ResponseEntity<List<PetLocationDTO>> receiveLocations(@Valid @RequestBody List<PetLocation> petLocations) {
+        List<PetLocationDTO> savedLocations = petLocationService.saveAllLocations(petLocations);
+        return new ResponseEntity<>(savedLocations, HttpStatus.CREATED);
     }
 
     @PutMapping("/{sensorId}")

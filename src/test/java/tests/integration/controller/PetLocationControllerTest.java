@@ -167,6 +167,5 @@ class PetLocationControllerTest {
                 .andExpect(status().isConflict())
                 .andExpect(content().string("Database conflict"));
     }
-
 }
 

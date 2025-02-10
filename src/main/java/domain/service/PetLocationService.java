@@ -11,7 +11,9 @@ import infrastructure.adapter.external.PetLocationPositionStack;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -82,4 +84,19 @@ public class PetLocationService implements PetLocationIn {
     public boolean existsBySensorId(String sensorId) {
         return petLocationOut.existsBySensorId(sensorId);
     }
+
+    public List<PetLocationDTO> saveAllLocations(List<PetLocation> petLocations) {
+        Set<String> sensorIds = new HashSet<>();
+        for (PetLocation pet : petLocations) {
+            if (!sensorIds.add(pet.getSensorId())) {
+                throw new IllegalArgumentException("Duplicated Sensor ID: " + pet.getSensorId());
+            }
+            validator.validate(pet);
+        }
+
+        return petLocations.parallelStream()
+                .map(this::saveLocation)
+                .collect(Collectors.toList());
+    }
+
 }
