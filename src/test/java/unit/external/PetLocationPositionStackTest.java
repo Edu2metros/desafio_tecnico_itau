@@ -1,4 +1,4 @@
-package tests.unit.external;
+package unit.external;
 
 import domain.model.PetLocation;
 import domain.service.validation.PetLocationValidator;

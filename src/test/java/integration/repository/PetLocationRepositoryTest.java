@@ -1,4 +1,4 @@
-package tests.integration.repository;
+package integration.repository;
 
 import domain.exception.PetLocationNotFoundException;
 import domain.model.PetLocation;

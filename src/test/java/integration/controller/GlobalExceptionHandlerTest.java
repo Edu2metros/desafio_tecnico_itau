@@ -1,4 +1,4 @@
-package tests.integration.controller;
+package integration.controller;
 
 import infrastructure.PetLocationMain;
 import org.junit.jupiter.api.Test;

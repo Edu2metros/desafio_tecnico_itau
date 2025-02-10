@@ -1,4 +1,4 @@
-package tests.integration.controller;
+package integration.controller;
 
 import domain.dto.PetLocationDTO;
 import domain.exception.PetLocationNotFoundException;
