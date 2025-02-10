@@ -17,6 +17,9 @@ public class PetLocationDTO {
         this.address = petLocation.getAddress();
     }
 
+    public PetLocationDTO() {
+    }
+
     public String getCountry() {
         return country;
     }
@@ -29,31 +32,17 @@ public class PetLocationDTO {
         return state;
     }
 
-    public void setState(String state) {
-        this.state = state;
-    }
-
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
 
     public String getNeighborhood() {
         return neighborhood;
-    }
-
-    public void setNeighborhood(String neighborhood) {
-        this.neighborhood = neighborhood;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
 }

@@ -13,7 +13,7 @@ import java.io.IOException;
 public class PetLocationPositionStack {
 
     private static final String API_URL = "http://api.positionstack.com/v1/reverse";
-    private static final String ACCESS_KEY = "4ca99e8eca0f31e9bc2c707ab1120c19";
+    private static final String ACCESS_KEY = "98b28301c5acc9e3f53804b141c9f76d";
 
     public PetLocation searchLocation(PetLocation petLocation) {
         RestTemplate restTemplate = new RestTemplate();
@@ -31,7 +31,7 @@ public class PetLocationPositionStack {
             petLocation.setState(data.path("region").asText());
             petLocation.setCity(data.path("locality").asText());
             petLocation.setNeighborhood(data.path("neighbourhood").asText());
-            petLocation.setAddress(data.path("label").asText());
+            petLocation.setAddress(data.path("label").asText().split(",")[0]);
         } catch (IOException e) {
             e.printStackTrace();
         }

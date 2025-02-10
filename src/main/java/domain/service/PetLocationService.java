@@ -79,4 +79,7 @@ public class PetLocationService implements PetLocationIn {
         PetLocation petLocation = petLocationOut.findBySensorId(sensorId);
         return transformer.toDTO(petLocation);
     }
+    public boolean existsBySensorId(String sensorId) {
+        return petLocationOut.existsBySensorId(sensorId);
+    }
 }
