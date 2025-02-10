@@ -14,6 +14,7 @@ Este projeto é uma aplicação backend desenvolvida com **Spring Boot**, que im
 - **Jacoco** (para verificar a cobertura de testes)
 - **PositionStack API** (para conversão de coordenadas geográficas em endereços detalhados)
 - **H2 Database** (banco de dados em memória para testes e desenvolvimento)
+- **GitHub Actions** (para automação de testes contínuos no CI/CD)
 
 ---
 
