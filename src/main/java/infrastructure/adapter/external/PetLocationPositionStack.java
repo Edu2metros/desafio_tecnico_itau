@@ -3,6 +3,8 @@ package infrastructure.adapter.external;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import domain.model.PetLocation;
+import domain.service.validation.PetLocationValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -15,7 +17,15 @@ public class PetLocationPositionStack {
     private static final String API_URL = "http://api.positionstack.com/v1/reverse";
     private static final String ACCESS_KEY = "98b28301c5acc9e3f53804b141c9f76d";
 
+    private final PetLocationValidator validator;
+
+    @Autowired
+    public PetLocationPositionStack(PetLocationValidator validator) {
+        this.validator = validator;
+    }
+
     public PetLocation searchLocation(PetLocation petLocation) {
+        validator.validateCoordinates(petLocation);
         RestTemplate restTemplate = new RestTemplate();
         String url = UriComponentsBuilder.fromHttpUrl(API_URL)
                 .queryParam("access_key", ACCESS_KEY)
