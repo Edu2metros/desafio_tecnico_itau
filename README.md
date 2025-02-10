@@ -67,5 +67,5 @@ O sistema implementa as operações básicas de CRUD (**Criar, Ler, Atualizar e 
 
 1. Execute o comando abaixo para rodar os testes unitários e de integração:
 	```bash
-	mvn test
+	mvn clean test
 	```
